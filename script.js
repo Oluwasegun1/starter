@@ -223,7 +223,6 @@ getCount;
 
 */
 
-/*
 const books = getBooks();
 books;
 
@@ -273,6 +272,3 @@ const updateBook = delBook.map((book) =>
   book.id == 1 ? { ...book, pages: 5087 } : book
 );
 updateBook;
-*/
-
-fetch("https://jsonplaceholder.typicode.com/todos");
