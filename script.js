@@ -143,39 +143,132 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-const book = getBook(1);
+/*
+// const book = getBook(3);
 
-// const title = book.title;
-// title;
-const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
-  book;
-console.log(title, author, pages, publicationDate, genres, hasMovieAdaptation);
 
-const [primaryGenre, secondaryGenre, ...otherGenre] = genres;
-console.log(primaryGenre, secondaryGenre, otherGenre);
+// // const title = book.title;
+// // title;
+// const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+//   book;
+// console.log(title, author, pages, publicationDate, genres, hasMovieAdaptation);
 
-//Adding new array
-const newGenre = [...genres, "beautiful-day"];
-console.log(newGenre);
+// const [primaryGenre, secondaryGenre, ...otherGenre] = genres;
+// console.log(primaryGenre, secondaryGenre, otherGenre);
 
-const updateBook = {
-  ...book,
-  //creating a new object
-  moviePublicationDate: "2004-5-09",
+// //Adding new array
+// const newGenre = [...genres, "beautiful-day"];
+// console.log(newGenre);
 
-  //overwriting an object
-  pages: "3000",
+// const updateBook = {
+//   ...book,
+//   //creating a new object
+//   moviePublicationDate: "2004-5-09",
+
+//   //overwriting an object
+//   pages: "3000",
+// };
+// console.log(updateBook);
+
+// const getYear = (yearn) => yearn.split("-")[0];
+// console.log(getYear(publicationDate));
+
+// const summary = `The book ${title}, was written by the icon ${author}, in the year ${getYear(
+//   publicationDate
+// )} the book has ${hasMovieAdaptation ? "" : "not"}been adapted as a movie`;
+// summary;
+
+// const pageRange =
+//   pages < 1000 ? "it has less than 1000 pages" : "more than a thousand";
+// console.log(`The book has ${pageRange} pages`);
+
+// //short-circuting
+
+// console.log(true && "
+// today is a good");
+// console.log(false && "tomorrow will be yesterday");
+// console.log(0 && " ");
+// console.log("" && 0);
+
+// console.log(true || "I am a good person");
+ // console.log(false || "dont say a thing");
+// console.log(0 || "happy day");
+// console.log(book.translations.spanish);
+// const spanishTranslation =
+//   book.translations.spanish || "No spanish translation";
+// console.log(spanishTranslation);
+
+// console.log(book.reviews.librarything.reviewsCount);
+// const countWrong = book.reviews.librarything.reviewsCount || "no data";
+// console.log(countWrong);
+
+// console.log(book.reviews.librarything.reviewsCount);
+// const countRight = book.reviews.librarything.reviewsCount ?? "no data";
+// console.log(countRight);
+
+// const totalCount = (book) =>
+//   book.reviews?.librarything?.reviewsCount ??
+//   0 + book.reviews?.goodreads?.reviewsCount ??
+//   0;
+// console.log(totalCount(book));
+// totalCount;
+
+// function getTotalCount(book) {
+//   getCount =
+//     book.reviews.librarything.reviewsCount +
+//     book.reviews.goodreads.reviewsCount;
+// }
+// console.log(getTotalCount(book));
+// getCount;
+
+*/
+
+const books = getBooks();
+books;
+
+const title = books.map((book) => book.title);
+title;
+
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+essentialData;
+
+const longBookWithMo = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+longBookWithMo;
+
+const adventureBooks = books
+  .filter((books) => books.genres.includes("adventure"))
+  .map((book) => book.title);
+adventureBooks;
+
+const allBookPage = books.reduce((acc, book) => acc + book.pages, 0);
+allBookPage;
+
+const arr = [3, 32, 6, 54, 2, 0, 5];
+const sorarr = arr.slice().sort((a, b) => a - b);
+sorarr;
+arr;
+
+const sortPages = books.slice().sort((a, b) => a.pages - b.pages);
+sortPages;
+
+const newBook = {
+  id: 6,
+  title: "Harry Poter and the Chambar of Secrets",
+  author: "J. K. Rowling",
 };
-console.log(updateBook);
 
-const getYear = (yearn) => yearn.split("-")[0];
-console.log(getYear(publicationDate));
+const addNewBook = [...books, newBook];
+addNewBook;
 
-const summary = `The book ${title}, was written by the icon ${author}, in the year ${getYear(
-  publicationDate
-)} the book has ${hasMovieAdaptation ? "" : "not"}been adapted as a movie`;
-summary;
+const delBook = addNewBook.filter((book) => book.id !== 3);
+delBook;
 
-const pageRange =
-  pages < 1000 ? "it has less than 1000 pages" : "more than a thousand";
-console.log(`The book has ${pageRange} pages`);
+const updateBook = delBook.map((book) =>
+  book.id == 1 ? { ...book, pages: 5087 } : book
+);
+updateBook;
